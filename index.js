@@ -5,7 +5,9 @@ const cors = require("cors");
 require("dotenv").config();
 const { connectToDB } = require("./mongoDB.js");
 const routes = require("./Routes/userRoutes.js");
-const stripe = require("stripe")(process.env.stripe_key);
+const stripe = require("stripe")(
+  "sk_test_51OynzPSAgwRpikwc86IctcatnOL2gHP6IgPsjc7Ocpp2EPpjI7yYCX2RAwUQYMA2x7tnpWXEwmjl2H77NPpSvQuC00wBMKCdaL"
+);
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -17,9 +19,9 @@ app.use(express.urlencoded({ extended: true }));
 
 //Routes
 app.use("/api", routes);
-app.get("/hello",async (req, res) => {
+app.get("/hello", async (req, res) => {
   res.send("Hello World!");
-})
+});
 
 // Connect to MongoDB database
 connectToDB();
